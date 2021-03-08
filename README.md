@@ -8,6 +8,8 @@ composer install
 
 npm install
 
+cp .env.example .env
+
 php artisan config:cache
 
 php artisan cache:clear
