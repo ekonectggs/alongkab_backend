@@ -12,7 +12,9 @@
 									<div class="card-body">
 										<h2 class="display-4 mb-2 font-weight-bold error-text text-center"><strong>Register</strong></h2>
 										<h4 class="text-white-80 mb-7 text-center">Create New Account</h4>
-										<div class="row">
+											<form method="post" action="{{route('register')}}">
+												@csrf
+												<div class="row">
 											<div class="col-9 d-block mx-auto">
 												<div class="input-group mb-4">
 													<div class="input-group-prepend">
@@ -51,7 +53,7 @@
 															<i class="fe fe-lock"></i>
 														</div>
 													</div>
-													<input type="password" class="form-control" placeholder="Password">
+													<input name="password" type="password" class="form-control" placeholder="Password">
 												</div>
 
                                                 <div class="input-group mb-4">
@@ -60,7 +62,7 @@
 															<i class="fe fe-lock"></i>
 														</div>
 													</div>
-													<input type="password" class="form-control" placeholder="Confirm Password">
+													<input name="password_confirmation" type="password" class="form-control" placeholder="Confirm Password">
 												</div>
 												<div class="form-group">
 													<label class="custom-control custom-checkbox">
@@ -70,7 +72,7 @@
 												</div>
 												<div class="row">
 													<div class="col-12">
-														<button type="button" class="btn  btn-secondary btn-block px-4">Create New Account</button>
+														<button type="submit" class="btn  btn-secondary btn-block px-4">Create New Account</button>
 													</div>
 													<div class="col-12 text-center">
 														<a href="{{url('/' . $page='forgot-password-2')}}" class="btn btn-link box-shadow-0 px-0 text-white-80">Forgot password?</a>
@@ -78,6 +80,8 @@
 												</div>
 											</div>
 										</div>
+
+											</form>
 										<div class="text-center pt-4">
 											<div class="font-weight-normal fs-16">You Already have an account <a class="btn-link font-weight-normal text-white-80" href="#">Login Here</a></div>
 										</div>

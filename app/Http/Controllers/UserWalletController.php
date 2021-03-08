@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\UserWallet;
 use Illuminate\Http\Request;
+use Auth;
 
 class UserWalletController extends Controller
 {
@@ -25,6 +26,18 @@ class UserWalletController extends Controller
     public function create()
     {
         //
+    }
+
+    public function user_wallet(Request $request)
+    {
+        //
+
+        $user_wallet = UserWallet::where('user_id', $request->user_id)->get();
+
+        return response()->json($user_wallet, 200);
+
+        // return response()->json(['error'=>'Unauthorized'], 401);
+
     }
 
     /**

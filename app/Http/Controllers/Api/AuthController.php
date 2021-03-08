@@ -18,6 +18,7 @@ class AuthController extends Controller
              $user = $request->user();
              $data['token'] = $user->createToken('MyApp')->accessToken;
              $data['name']  = $user->name;
+             $data['user_data']  = $user;
              return response()->json($data, 200);
          }
 
