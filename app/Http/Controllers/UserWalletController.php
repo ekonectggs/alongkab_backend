@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\UserWallet;
 use Illuminate\Http\Request;
-use Auth;
+
 
 class UserWalletController extends Controller
 {
@@ -32,9 +32,16 @@ class UserWalletController extends Controller
     {
         //
 
-        $user_wallet = UserWallet::where('user_id', $request->user_id)->get();
+        $cr = UserWallet::where('user_id', $request->user_id)->where('type', 'credit')->sum('amount');
+        $db = UserWallet::where('user_id', $request->user_id)->where('type', 'debit')->sum('amount');
 
-        return response()->json($user_wallet, 200);
+        $total = $cr - $db;
+
+        return response()->json([
+            'cr'=> $cr,
+            'db' => $db,
+            'total' => $total
+        ], 200);
 
         // return response()->json(['error'=>'Unauthorized'], 401);
 
@@ -46,9 +53,24 @@ class UserWalletController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function fund_wallet(Request $request)
     {
+
         //
+
+        $user_wallet = $request->all();
+
+        $user_wallet = UserWallet::create($user_wallet);
+
+        // $user_wallet = UserWallet::Create([
+        //     'user_id' => $request->user_id,
+        //     'amount' => $request->amount,
+        //     'type' => $request->type,
+        //     'description' =>$request->description
+        // ]);
+
+
+        return response()->json($user_wallet, 200);
     }
 
     /**

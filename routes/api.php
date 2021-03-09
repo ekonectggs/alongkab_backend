@@ -18,6 +18,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::post('/fund_wallet', 'UserWalletController@fund_wallet');
+
+Route::post('/user_wallet', 'UserWalletController@user_wallet');
 
 Route::post('login', 'Api\AuthController@login');
 
